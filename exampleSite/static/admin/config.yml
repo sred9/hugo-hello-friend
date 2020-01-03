@@ -1,0 +1,247 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: exampleSite/static/img
+public_folder: /img
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: exampleSite/config.toml
+        fields:
+          - widget: string
+            name: baseurl
+            label: Base URL
+            required: false
+            hint: Hostname (and path)  to the root
+          - widget: string
+            name: languageCode
+            label: Language Code
+            required: false
+          - widget: string
+            name: theme
+            label: Theme
+            required: false
+          - widget: number
+            name: paginate
+            label: Paginate Number
+            required: false
+            valueType: int
+          - widget: object
+            name: params
+            label: Site Params
+            required: false
+            fields:
+              - widget: string
+                name: contentTypeName
+                label: Content Type Name
+                required: false
+                hint: dir name of your blog content (default is `content/posts`)
+              - widget: select
+                name: defaultTheme
+                label: Default Theme
+                required: false
+                options:
+                  - light
+                  - dark
+              - widget: number
+                name: showMenuItems
+                label: Show Menu Items
+                required: false
+                hint: 'if you set this to 0, only submenu trigger will be visible'
+                valueType: int
+              - widget: boolean
+                name: showReadingTime
+                label: Show Reading Time
+                required: false
+          - widget: object
+            name: languages
+            label: Languages
+            required: false
+            fields:
+              - widget: object
+                name: en
+                label: English
+                required: false
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: false
+                  - widget: string
+                    name: subtitle
+                    label: Subtitle
+                    required: false
+                  - widget: string
+                    name: keywords
+                    label: Keywords
+                    required: false
+                  - widget: string
+                    name: copyright
+                    label: Copyright
+                    required: false
+                  - widget: string
+                    name: menuMore
+                    label: Menu More
+                    required: false
+                  - widget: string
+                    name: writtenBy
+                    label: Written By
+                    required: false
+                  - widget: string
+                    name: readMore
+                    label: Read More
+                    required: false
+                  - widget: string
+                    name: readOtherPosts
+                    label: Read Other Posts
+                    required: false
+                  - widget: string
+                    name: newerPosts
+                    label: Newer Posts
+                    required: false
+                  - widget: string
+                    name: olderPosts
+                    label: Older Posts
+                    required: false
+                  - widget: string
+                    name: minuteReadingTime
+                    label: Minute Reading Time
+                    required: false
+                  - widget: date
+                    name: dateFormatSingle
+                    label: Date Format Single
+                    required: false
+                  - widget: date
+                    name: dateFormatList
+                    label: Date Format List
+                    required: false
+                  - widget: object
+                    name: params
+                    label: Params
+                    required: false
+                    fields:
+                      - widget: object
+                        name: logo
+                        label: Logo
+                        required: false
+                        fields:
+                          - widget: string
+                            name: logoText
+                            label: Logo Text
+                            required: false
+                          - widget: string
+                            name: logoHomeLink
+                            label: Logo Home Link
+                            required: false
+                  - widget: object
+                    name: menu
+                    label: Menu
+                    required: false
+                    fields:
+                      - widget: list
+                        name: main
+                        label: Main Menu
+                        required: false
+                        fields:
+                          - widget: string
+                            name: identifier
+                            label: Identifier
+                            required: false
+                          - widget: string
+                            name: name
+                            label: Name
+                            required: false
+                          - widget: string
+                            name: url
+                            label: Menu Link
+                            required: false
+  - name: basicpage
+    label: Basic Pagess
+    folder: exampleSite/content/
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Page Title
+        required: true
+      - widget: date
+        name: date
+        label: Create Date
+        required: false
+      - widget: string
+        name: author
+        label: Author
+        required: false
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+  - name: archive
+    label: Archive Page
+    files:
+      - name: archive
+        label: Archive Page
+        file: exampleSite/content/archive.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: select
+            name: layout
+            label: Layout
+            required: true
+            default: list
+            options:
+              - list
+          - widget: string
+            name: url
+            label: Page URL
+            required: false
+          - widget: string
+            name: type
+            label: Type
+            required: false
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: post
+    label: Postss
+    folder: exampleSite/content/post
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Post Title
+        required: true
+      - widget: date
+        name: date
+        label: Published Date
+        required: false
+      - widget: string
+        name: author
+        label: Author
+        required: false
+      - widget: image
+        name: cover
+        label: Cover Image
+        required: false
+      - widget: string
+        name: description
+        label: Description
+        required: false
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
